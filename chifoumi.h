@@ -1,9 +1,14 @@
-/***************************************************************
- * Name:      chifoumiMain.h
- * Author:    P.Dagorret ()
- * Created:   2021-05-10
- * Description : classe m�tier (= Mod�le) Chifoumi-v1
- **************************************************************/
+/**
+ * @file chifoumi.h
+ * @author Mathis HERIVEAU, Arthur LE MENN, Colas NAUDI
+ * @brief 
+ * @version 0.1
+ * @date 30-03-2022
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+**/
+
 #ifndef CHIFOUMI_H
 #define CHIFOUMI_H
 #include <iostream>

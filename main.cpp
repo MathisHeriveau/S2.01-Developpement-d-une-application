@@ -1,12 +1,13 @@
-/***************************************************************
- * Name:      main.cpp
- * Author:    P.Dagorret ()
- * Created:   2021-05-10
- * Description : Programme TEST de la classe m�tier Chifoumi-v1
- **************************************************************/
-
-// cd "/Users/colasnaudi/Desktop/GitHub/BUT-INFO/S2/S2.01-Développement-d-une-application/CHIFOUMI/" && g++ main.cpp chifoumi.cpp -o main && "/Users/colasnaudi/Desktop/GitHub/BUT-INFO/S2/S2.01-Développement-d-une-application/CHIFOUMI/"main
-
+/**
+ * @file main.cpp
+ * @author Mathis HERIVEAU, Arthur LE MENN, Colas NAUDI
+ * @brief 
+ * @version 0.1
+ * @date 30-03-2022
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+**/
 
 #include <iostream>
 
