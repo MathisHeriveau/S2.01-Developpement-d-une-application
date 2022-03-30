@@ -3,6 +3,9 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES +=
+SOURCES += \
+    chifoumi.cpp \
+    main.cpp
 
-HEADERS +=
+HEADERS += \
+    chifoumi.h
