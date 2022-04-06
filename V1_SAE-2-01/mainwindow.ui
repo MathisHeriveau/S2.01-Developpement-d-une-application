@@ -45,7 +45,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_2">
+           <widget class="QLabel" name="labelScoreVous">
             <property name="text">
              <string>0</string>
             </property>
@@ -70,7 +70,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QLabel" name="label_6">
+             <widget class="QLabel" name="iconVous">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>10</horstretch>
@@ -164,7 +164,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="label_4">
+           <widget class="QLabel" name="labelScoreMachine">
             <property name="text">
              <string>0</string>
             </property>
@@ -189,7 +189,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QLabel" name="label_7">
+             <widget class="QLabel" name="iconMachine">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>10</horstretch>
