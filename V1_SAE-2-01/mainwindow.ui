@@ -346,7 +346,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="iconPapier">
+           <widget class="QPushButton" name="iconCiseau">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>10</horstretch>
@@ -411,7 +411,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_4">
+           <widget class="QPushButton" name="NvllPartie">
             <property name="text">
              <string>Nouvelle partie</string>
             </property>
