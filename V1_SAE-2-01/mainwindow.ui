@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>589</width>
-    <height>464</height>
+    <width>582</width>
+    <height>448</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -304,8 +304,8 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>60</width>
-              <height>60</height>
+              <width>100</width>
+              <height>101</height>
              </size>
             </property>
            </widget>
@@ -339,14 +339,17 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>60</width>
-              <height>60</height>
+              <width>100</width>
+              <height>101</height>
              </size>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="iconPapier">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
               <horstretch>10</horstretch>
@@ -374,8 +377,8 @@
             </property>
             <property name="iconSize">
              <size>
-              <width>60</width>
-              <height>60</height>
+              <width>100</width>
+              <height>113</height>
              </size>
             </property>
            </widget>
@@ -443,7 +446,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>589</width>
+     <width>582</width>
      <height>21</height>
     </rect>
    </property>
