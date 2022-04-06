@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>541</width>
-    <height>444</height>
+    <width>589</width>
+    <height>464</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -70,37 +70,27 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QLabel" name="label_6">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>10</horstretch>
                 <verstretch>10</verstretch>
                </sizepolicy>
               </property>
-              <property name="minimumSize">
-               <size>
-                <width>10</width>
-                <height>10</height>
-               </size>
-              </property>
               <property name="maximumSize">
                <size>
-                <width>10000</width>
-                <height>10000</height>
+                <width>200</width>
+                <height>200</height>
                </size>
               </property>
               <property name="text">
                <string/>
               </property>
-              <property name="icon">
-               <iconset resource="ressourcesChifoumi.qrc">
-                <normaloff>:/chifoumi/images/ciseau_115.png</normaloff>:/chifoumi/images/ciseau_115.png</iconset>
+              <property name="pixmap">
+               <pixmap resource="ressourcesChifoumi.qrc">:/chifoumi/images/ciseau.gif</pixmap>
               </property>
-              <property name="iconSize">
-               <size>
-                <width>60</width>
-                <height>60</height>
-               </size>
+              <property name="scaledContents">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -137,31 +127,12 @@
         <item>
          <layout class="QVBoxLayout" name="layoutPlateauCentre">
           <item>
-           <widget class="QPushButton" name="pushButton_3">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>10</horstretch>
-              <verstretch>10</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>100</height>
-             </size>
-            </property>
+           <widget class="QLabel" name="label_8">
             <property name="text">
              <string/>
             </property>
-            <property name="icon">
-             <iconset resource="ressourcesChifoumi.qrc">
-              <normaloff>:/chifoumi/images/versus_70.png</normaloff>:/chifoumi/images/versus_70.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>60</width>
-              <height>60</height>
-             </size>
+            <property name="pixmap">
+             <pixmap resource="ressourcesChifoumi.qrc">:/chifoumi/images/versus.gif</pixmap>
             </property>
            </widget>
           </item>
@@ -218,40 +189,27 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_2">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
+             <widget class="QLabel" name="label_7">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                 <horstretch>10</horstretch>
                 <verstretch>10</verstretch>
                </sizepolicy>
               </property>
-              <property name="minimumSize">
-               <size>
-                <width>10</width>
-                <height>10</height>
-               </size>
-              </property>
               <property name="maximumSize">
                <size>
-                <width>100</width>
-                <height>100</height>
+                <width>200</width>
+                <height>200</height>
                </size>
               </property>
               <property name="text">
                <string/>
               </property>
-              <property name="icon">
-               <iconset resource="ressourcesChifoumi.qrc">
-                <normaloff>:/chifoumi/images/papier_115.png</normaloff>:/chifoumi/images/papier_115.png</iconset>
+              <property name="pixmap">
+               <pixmap resource="ressourcesChifoumi.qrc">:/chifoumi/images/pierre.gif</pixmap>
               </property>
-              <property name="iconSize">
-               <size>
-                <width>60</width>
-                <height>60</height>
-               </size>
+              <property name="scaledContents">
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -485,7 +443,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>541</width>
+     <width>589</width>
      <height>21</height>
     </rect>
    </property>
