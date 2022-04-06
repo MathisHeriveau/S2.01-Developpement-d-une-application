@@ -6,17 +6,33 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    ui->setupUi(this);
+
+
+
+
     //ctor
     // partie mod�le
     initScores();
     initCoups();
+
     srand(time(NULL));
 
-    ui->setupUi(this);
+    ui->iconFeuille->setEnabled(false);
+    ui->iconCiseau->setEnabled(false);
+    ui->iconPierre->setEnabled(false);
+    actualisation();
+    ui->NvllPartie->setFocus();
+    ui->NvllPartie->setDefault(true);
+
+
+
+
     connect(ui->iconFeuille, SIGNAL(clicked()), this, SLOT(boutonFeuille()));
     connect(ui->iconCiseau, SIGNAL(clicked()), this, SLOT(boutonCiseau()));
     connect(ui->iconPierre, SIGNAL(clicked()), this, SLOT(boutonPierre()));
     connect(ui->NvllPartie, SIGNAL(clicked()), this, SLOT(boutonNvllPartie()));
+
 }
 
 MainWindow::~MainWindow()
@@ -194,6 +210,16 @@ void MainWindow::boutonNvllPartie(){
     this->initCoups();
     this->initScores();
     this->actualisation();
+
+    ui->iconFeuille->setEnabled(true);
+    ui->iconCiseau->setEnabled(true);
+    ui->iconPierre->setEnabled(true);
+
+    ui->labelMachine->setStyleSheet("color: blue;");
+    ui->labelVous->setStyleSheet("color: blue;");
+    ui->labelScoreMachine->setStyleSheet("color: blue;");
+    ui->labelScoreVous->setStyleSheet("color: blue;");
+
 
 }
 
