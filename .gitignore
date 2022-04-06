@@ -49,7 +49,7 @@ object_script.*.Debug
 *.moc
 moc_*.cpp
 moc_*.h
-qrc_*.cpp
+
 ui_*.h
 *.qmlc
 *.jsc
@@ -77,7 +77,7 @@ compile_commands.json
 # QtCreator local machine specific files for imported projects
 *creator.user*
 
-*_qmlcache.qrc
+
 
 ### QtCreator ###
 # gitignore for Qt Creator like IDE for pure C/C++ project without Qt
