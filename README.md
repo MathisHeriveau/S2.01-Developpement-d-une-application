@@ -22,7 +22,7 @@
             <td align="center">v1</td>
             <td align="left">Version décrite dans le paragraphe §1 précédent.<br> La barre de menus est inactive.</td>
             <td align="center"></td>
-            <td align="center"><strong></strong></td>
+            <td align="center"><strong>FAIT</strong></td>
         </tr>
         <tr>
             <td align="center">v2</td>
