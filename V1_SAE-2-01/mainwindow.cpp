@@ -11,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-
     //ctor
     // partie mod�le
     initScores();

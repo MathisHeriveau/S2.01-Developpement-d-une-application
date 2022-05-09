@@ -3,23 +3,29 @@
 
 #include <QObject>
 #include "modele.h"
-class mainWindow;
-class Presentation : public QObject
+
+class MainWindow;
+class presentation : public QObject
 {
     Q_OBJECT
 public:
-    explicit Presentation(Modele *m, QObject *parent = nullptr);
+    explicit presentation(modele* m,QObject *parent = nullptr);
+
+    modele* _leModele;
+    MainWindow* _laVue;
+
 public:
-    Modele* getModele();
-    mainWindow* getVue();
-    void setModele(Modele *m);
-    void setVue(mainWindow *v);
-signals:
-public slots:   // déclenchés par la vue
-    
-private:
-    Modele *_leModele;
-    mainWindow *_laVue;
+    modele* getModele();
+    MainWindow* getVue();
+    void setModele(modele *m);
+    void setVue(MainWindow *m);
+
+
+public slots:
+    void boutonFeuille();
+    void boutonCiseau();
+    void boutonPierre();
+    void boutonNvllPartie();
 };
 
 #endif // PRESENTATION_H

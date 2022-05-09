@@ -1,29 +1,60 @@
 #include "presentation.h"
-#include "mainWindow.h"
-#include <QDebug>
+#include "chifoumi.h"
 
-Presentation::Presentation(Modele *m, QObject *parent)
-    : QObject{parent}, _leModele(m)
+presentation::presentation(modele* m,QObject *parent) : QObject{parent}, _leModele(m)
 {
-    _leModele->eteindre();
+    //ctor
+    // partie mod�le
+    _leModele->initScores();
+    _leModele->initCoups();
 }
 
-Modele *Presentation::getModele()
+
+modele *presentation::getModele()
 {
     return _leModele;
 }
 
-mainWindow *Presentation::getVue()
+MainWindow *presentation::getVue()
 {
     return _laVue;
 }
 
-void Presentation::setModele(Modele *m)
+void presentation::setModele(modele *m)
 {
     _leModele = m;
 }
 
-void Presentation::setVue(mainWindow *v)
+void presentation::setVue(MainWindow *v)
 {
     _laVue = v;
 }
+
+
+void presentation::boutonFeuille(){
+    _leModele->setCoupJoueur(_leModele->UnCoup::papier);
+    _leModele->setCoupMachine(_leModele->genererUnCoup());
+    _leModele->majScores(_leModele->determinerGagnant());
+    _laVue->actualisation(_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+}
+void presentation::boutonCiseau(){
+    _leModele->setCoupJoueur(_leModele->UnCoup::ciseau);
+    _leModele->setCoupMachine(_leModele->genererUnCoup());
+    _leModele->majScores(_leModele->determinerGagnant());
+    _laVue->actualisation(_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+}
+void presentation::boutonPierre(){
+    _leModele->setCoupJoueur(_leModele->UnCoup::pierre);
+    _leModele->setCoupMachine(_leModele->genererUnCoup());
+    _leModele->majScores(_leModele->determinerGagnant());
+    _laVue->actualisation(_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+
+}
+void presentation::boutonNvllPartie(){
+    _leModele->initCoups();
+    _leModele->initScores();
+    _laVue->actualisation(_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+
+    _laVue->nouvellePartie();
+}
+
