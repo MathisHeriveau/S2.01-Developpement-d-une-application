@@ -9,7 +9,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     srand(time(NULL));
-
+    ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/rien.gif"));
+    ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/rien.gif"));
     ui->iconFeuille->setEnabled(false);
     ui->iconCiseau->setEnabled(false);
     ui->iconPierre->setEnabled(false);

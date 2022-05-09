@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     // associer la vue à la présentation
     p->setVue(&w);
     // initialiser la vue en conformité avec l'état initial du modèle
-    p->getVue()->nouvellePartie();
+
     // connexion des signaux de la vue avec les slots de la présentation
     w.nvlleConnexion(p);
 
