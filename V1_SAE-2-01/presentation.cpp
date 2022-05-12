@@ -1,5 +1,6 @@
 #include "presentation.h"
 #include "chifoumi.h"
+#include <QMessageBox>
 
 presentation::presentation(modele* m,QObject *parent) : QObject{parent}, _leModele(m)
 {
@@ -57,4 +58,13 @@ void presentation::coupJoueurJoue(){
     _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->majScores(_leModele->determinerGagnant());
     _laVue->actualisation(_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine(), _leModele->getEtat());
+}
+
+void presentation::aProposDe()
+{
+    QMessageBox *msgbox = new QMessageBox;
+    msgbox->setWindowTitle("A propos de cette application.");
+    msgbox->setText("Programme développé par :\nArthur Le Menn\nColas Naudi\nMathis Heriveau");
+    msgbox->setStandardButtons(QMessageBox::Ok);
+    msgbox->exec();
 }

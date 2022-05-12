@@ -28,6 +28,7 @@ public slots:
     void boutonCiseau();
     void boutonPierre();
     void nvllePartieDemandee();
+    void aProposDe();
 };
 
 #endif // PRESENTATION_H

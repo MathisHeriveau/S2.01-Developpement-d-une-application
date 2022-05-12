@@ -31,7 +31,8 @@ void MainWindow::nvlleConnexion(QObject *c)
     connect(ui->iconCiseau, SIGNAL(clicked()), c, SLOT(boutonCiseau()));
     connect(ui->iconPierre, SIGNAL(clicked()), c, SLOT(boutonPierre()));
     connect(ui->NvllPartie, SIGNAL(clicked()), c, SLOT(nvllePartieDemandee()));
-
+    connect(ui->actionA_propos_de, SIGNAL(triggered()), c, SLOT(aProposDe()));
+    connect(ui->actionQuitter, SIGNAL(triggered()), this, SLOT(close()));
 }
 
 void MainWindow::supprConnexion(QObject *c)
@@ -41,7 +42,8 @@ void MainWindow::supprConnexion(QObject *c)
     disconnect(ui->iconCiseau, SIGNAL(clicked()), c, SLOT(boutonCiseau()));
     disconnect(ui->iconPierre, SIGNAL(clicked()), c, SLOT(boutonPierre()));
     disconnect(ui->NvllPartie, SIGNAL(clicked()), c, SLOT(nvllePartieDemandee()));
-
+    disconnect(ui->actionA_propos_de, SIGNAL(triggered()), c, SLOT(aProposDe()));
+    disconnect(ui->actionQuitter, SIGNAL(triggered()), c, SLOT(close()));
 }
 
 
