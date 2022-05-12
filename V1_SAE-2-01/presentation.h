@@ -20,12 +20,14 @@ public:
     void setModele(modele *m);
     void setVue(MainWindow *m);
 
+private:
+    void coupJoueurJoue();
 
 public slots:
     void boutonFeuille();
     void boutonCiseau();
     void boutonPierre();
-    void boutonNvllPartie();
+    void nvllePartieDemandee();
 };
 
 #endif // PRESENTATION_H

@@ -2,6 +2,7 @@
 
 modele::modele(QObject *parent) : QObject(parent)
 {
+
 }
 
 /// Getters
@@ -22,6 +23,9 @@ unsigned int modele::getScoreMachine() {
     return scoreMachine;
 }
 
+modele::Etat modele::getEtat(){
+    return etatJeu;
+}
 
 char modele::determinerGagnant(){
     char gagnantARetourner;
@@ -125,6 +129,10 @@ void modele::setScoreJoueur(unsigned int p_score) {
 
 void modele::setScoreMachine(unsigned int p_score) {
     scoreMachine = p_score;
+}
+
+void modele::setEtat(Etat e){
+    etatJeu = e;
 }
 
 void modele::majScores(char p_gagnant) {

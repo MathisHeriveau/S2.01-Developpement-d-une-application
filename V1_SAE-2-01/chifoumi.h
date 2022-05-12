@@ -19,8 +19,7 @@ public:
     void nvlleConnexion(QObject *c);
     void supprConnexion(QObject *c);
 
-    void nouvellePartie();
-    void actualisation(modele::UnCoup, modele::UnCoup, int scoreJ,int scoreM);
+    void actualisation(modele::UnCoup, modele::UnCoup, int scoreJ,int scoreM, modele::Etat);
 
 
 private:

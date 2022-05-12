@@ -30,7 +30,7 @@ void MainWindow::nvlleConnexion(QObject *c)
     connect(ui->iconFeuille, SIGNAL(clicked()), c, SLOT(boutonFeuille()));
     connect(ui->iconCiseau, SIGNAL(clicked()), c, SLOT(boutonCiseau()));
     connect(ui->iconPierre, SIGNAL(clicked()), c, SLOT(boutonPierre()));
-    connect(ui->NvllPartie, SIGNAL(clicked()), c, SLOT(boutonNvllPartie()));
+    connect(ui->NvllPartie, SIGNAL(clicked()), c, SLOT(nvllePartieDemandee()));
 
 }
 
@@ -40,42 +40,46 @@ void MainWindow::supprConnexion(QObject *c)
     disconnect(ui->iconFeuille, SIGNAL(clicked()), c, SLOT(boutonFeuille()));
     disconnect(ui->iconCiseau, SIGNAL(clicked()), c, SLOT(boutonCiseau()));
     disconnect(ui->iconPierre, SIGNAL(clicked()), c, SLOT(boutonPierre()));
-    disconnect(ui->NvllPartie, SIGNAL(clicked()), c, SLOT(boutonNvllPartie()));
+    disconnect(ui->NvllPartie, SIGNAL(clicked()), c, SLOT(nvllePartieDemandee()));
 
 }
 
 
-void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int scoreJ,int scoreM){
+void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int scoreJ,int scoreM, modele::Etat e){
 
-    QString txt;
+    switch (e) {
+        case modele::initialiser:
+            ui->iconFeuille->setEnabled(true);
+            ui->iconCiseau->setEnabled(true);
+            ui->iconPierre->setEnabled(true);
 
-    ui->labelScoreMachine->setText(txt.QString::setNum(scoreM));
-    ui->labelScoreVous->setText(txt.QString::setNum(scoreJ));
+            ui->labelMachine->setStyleSheet("color: blue;");
+            ui->labelVous->setStyleSheet("color: blue;");
+            ui->labelScoreMachine->setStyleSheet("color: blue;");
+            ui->labelScoreVous->setStyleSheet("color: blue;");
+            break;
+        case modele::enCours:
+            QString txt;
 
-    switch (coupJ) {
-        case modele::UnCoup::pierre: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/pierre.gif"));  break;
-        case modele::UnCoup::ciseau: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/ciseau.gif")); break;
-        case modele::UnCoup:: papier: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/papier.gif"));break;
-        case modele::UnCoup::rien: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/rien.gif")); break;
+            ui->labelScoreMachine->setText(txt.QString::setNum(scoreM));
+            ui->labelScoreVous->setText(txt.QString::setNum(scoreJ));
+
+            switch (coupJ) {
+                case modele::UnCoup::pierre: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/pierre.gif"));  break;
+                case modele::UnCoup::ciseau: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/ciseau.gif")); break;
+                case modele::UnCoup:: papier: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/papier.gif"));break;
+                case modele::UnCoup::rien: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/rien.gif")); break;
+            }
+
+            switch (coupM) {
+                case modele::UnCoup::pierre: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/pierre.gif")); break;
+                case modele::UnCoup::ciseau: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/ciseau.gif")); break;
+                case modele::UnCoup::papier: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/papier.gif")); break;
+                case modele::UnCoup::rien: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/rien.gif")); break;
+            }
+            break;
+
     }
 
-    switch (coupM) {
-        case modele::UnCoup::pierre: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/pierre.gif")); break;
-        case modele::UnCoup::ciseau: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/ciseau.gif")); break;
-        case modele::UnCoup::papier: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/papier.gif")); break;
-        case modele::UnCoup::rien: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/rien.gif")); break;
-    }
 }
 
-
-void MainWindow::nouvellePartie()
-{
-    ui->iconFeuille->setEnabled(true);
-    ui->iconCiseau->setEnabled(true);
-    ui->iconPierre->setEnabled(true);
-
-    ui->labelMachine->setStyleSheet("color: blue;");
-    ui->labelVous->setStyleSheet("color: blue;");
-    ui->labelScoreMachine->setStyleSheet("color: blue;");
-    ui->labelScoreVous->setStyleSheet("color: blue;");
-}

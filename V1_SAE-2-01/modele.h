@@ -12,10 +12,11 @@ public:
 
 public:
     enum UnCoup {pierre, papier, ciseau, rien};
+    enum Etat {initialiser, enCours};
 
     ///* Méthodes du Modéle
 public:
-        // Getters
+        ///* Getters
     UnCoup getCoupJoueur();
         /* retourne le dernier coup joué par le joueur */
     UnCoup getCoupMachine();
@@ -24,12 +25,17 @@ public:
         /* retourne le score du joueur */
     unsigned int getScoreMachine();
         /* retourne le score de la machine */
+    Etat getEtat();
+        /* retourne l'état du jeu */
+
+
     char determinerGagnant();
         /* détermine le gagnant 'J' pour joueur, 'M' pour machine, 'N' pour match nul
            en fonction du dernier coup joué par chacun d'eux */
 
-    // Setters
+
 public:
+    ///* Setters
     void setCoupJoueur(UnCoup p_coup);
         /* initialise l'attribut coupJoueur avec la valeur
            du paramétre p_coup */
@@ -42,6 +48,9 @@ public:
     void setScoreMachine(unsigned int p_score);
         /* initialise l'attribut coupMachine avec la valeur
            du paramétre p_score */
+    void setEtat(Etat e);
+        /* initialise l'attribut etatJeu avec la valeur
+            du paramétre e */
 
     // Autres modificateurs
     void majScores(char p_gagnant);
@@ -68,6 +77,7 @@ private:
     unsigned int scoreMachine;  // score actuel de la Machine
     UnCoup coupJoueur;          // dernier coup joué par le joueur
     UnCoup coupMachine;         // dernier coup joué par la machine
+    Etat etatJeu;                  // état de la partie
 
 };
 
