@@ -1,5 +1,6 @@
 #include "chifoumi.h"
 #include "ui_chifoumi.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -47,8 +48,8 @@ void MainWindow::supprConnexion(QObject *c)
 }
 
 
-void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int scoreJ,int scoreM, modele::Etat e){
-
+void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int scoreJ,int scoreM, modele::Etat e, unsigned int nbPointsRequis){
+    QString txt;
     switch (e) {
         case modele::initialiser:
             ui->iconFeuille->setEnabled(true);
@@ -59,12 +60,24 @@ void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int s
             ui->labelVous->setStyleSheet("color: blue;");
             ui->labelScoreMachine->setStyleSheet("color: blue;");
             ui->labelScoreVous->setStyleSheet("color: blue;");
+
             break;
+        case modele::fin:
+            if(scoreJ > scoreM){
+                QMessageBox::information(this, "Fin de la partie gagnant", "Bravo vous gagné la partie avec " + txt.QString::setNum(scoreJ) + " points");
+            }
+            else{
+                QMessageBox::information(this, "Fin de la partie perdant", "Dommage vous avez perdu la partie avec " + txt.QString::setNum(scoreJ) + " points");
+            }
+
+
+
         case modele::enCours:
-            QString txt;
+
 
             ui->labelScoreMachine->setText(txt.QString::setNum(scoreM));
             ui->labelScoreVous->setText(txt.QString::setNum(scoreJ));
+            ui->labelNbPointRequis->setText(txt.QString::setNum(nbPointsRequis));
 
             switch (coupJ) {
                 case modele::UnCoup::pierre: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/pierre.gif"));  break;
@@ -80,6 +93,8 @@ void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int s
                 case modele::UnCoup::rien: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/rien.gif")); break;
             }
             break;
+
+
 
     }
 

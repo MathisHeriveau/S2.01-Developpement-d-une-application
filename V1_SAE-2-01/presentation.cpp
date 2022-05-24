@@ -49,7 +49,7 @@ void presentation::boutonPierre(){
 void presentation::nvllePartieDemandee(){
     _leModele->initCoups();
     _leModele->initScores();
-    _laVue->actualisation(_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine(), _leModele->getEtat());
+    _laVue->actualisation(_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine(), _leModele->getEtat(), _leModele->getNbPointsRequis());
     _leModele->setEtat(modele::Etat::enCours);
 }
 
@@ -57,14 +57,26 @@ void presentation::nvllePartieDemandee(){
 void presentation::coupJoueurJoue(){
     _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->majScores(_leModele->determinerGagnant());
-    _laVue->actualisation(_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine(), _leModele->getEtat());
+    if(_leModele->getNbPointsRequis()<= _leModele->getScoreJoueur() || _leModele->getNbPointsRequis()<= _leModele->getScoreMachine()){
+        //Le score requis est atteint
+        _laVue->actualisation(_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine(), _leModele->getEtat(), _leModele->getNbPointsRequis());
+        _leModele->setEtat(modele::Etat::fin);
+        _laVue->actualisation(_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine(), _leModele->getEtat(), _leModele->getNbPointsRequis());
+        _leModele->setEtat(modele::Etat::enCours);
+        nvllePartieDemandee();
+    }
+    else{
+        _laVue->actualisation(_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine(), _leModele->getEtat(), _leModele->getNbPointsRequis());
+    }
+
+
 }
 
 void presentation::aProposDe()
 {
     QMessageBox *msgbox = new QMessageBox;
     msgbox->setWindowTitle("A propos de cette application.");
-    msgbox->setText("Programme développé par :\nArthur Le Menn\nColas Naudi\nMathis Heriveau");
+    msgbox->setText(" - La version de l’application : V4\n- la date de création 24/05/2022\n - Les auteursProgramme développé par :\nArthur Le Menn\nColas Naudi\nMathis Heriveau");
     msgbox->setStandardButtons(QMessageBox::Ok);
     msgbox->exec();
 }
