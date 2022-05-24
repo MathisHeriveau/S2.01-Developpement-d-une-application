@@ -56,9 +56,7 @@ void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int s
             ui->iconCiseau->setEnabled(true);
             ui->iconPierre->setEnabled(true);
 
-            ui->labelMachine->setStyleSheet("color: blue;");
             ui->labelVous->setStyleSheet("color: blue;");
-            ui->labelScoreMachine->setStyleSheet("color: blue;");
             ui->labelScoreVous->setStyleSheet("color: blue;");
 
             break;
