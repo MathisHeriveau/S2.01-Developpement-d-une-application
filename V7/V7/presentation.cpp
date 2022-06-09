@@ -1,10 +1,13 @@
 #include "presentation.h"
 #include "chifoumi.h"
 #include "dialogparametre.h"
+#include "dialogconnexion.h"
 #include <QMessageBox>
 
 presentation::presentation(modele* m,QObject *parent) : QObject{parent}, _leModele(m)
 {
+
+
     //ctor
     // partie mod�le
     tmps = 30;
@@ -16,6 +19,9 @@ presentation::presentation(modele* m,QObject *parent) : QObject{parent}, _leMode
     _leModele->setEtat(modele::Etat::initialiser);
     _time = new QTimer(this);
     QObject::connect(_time, SIGNAL(timeout()), this, SLOT(updateTimer()));
+
+    DialogConnexion* maDLG = new DialogConnexion;
+    maDLG->exec();
 }
 
 

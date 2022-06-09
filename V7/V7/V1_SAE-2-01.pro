@@ -1,4 +1,4 @@
-QT       += core gui
+QT       +=core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -9,18 +9,23 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += chifoumi.cpp \
+    database.cpp \
+    dialogconnexion.cpp \
     dialogparametre.cpp
 SOURCES += main.cpp
 SOURCES += modele.cpp
 SOURCES += presentation.cpp
 
 HEADERS += chifoumi.h \
+    database.h \
+    dialogconnexion.h \
     dialogparametre.h \
     modele.h \
     presentation.h
 
 FORMS += \
     chifoumi.ui \
+    dialogconnexion.ui \
     dialogparametre.ui
 
 # Default rules for deployment.
