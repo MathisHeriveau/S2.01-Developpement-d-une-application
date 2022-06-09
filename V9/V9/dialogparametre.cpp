@@ -7,11 +7,13 @@ DialogParametre::DialogParametre(QWidget *parent, QString nom, int nbPtsMax,int 
     ui(new Ui::DialogParametre)
 {
     ui->setupUi(this);
+    // Configuration des premiers elements de la fenetre
     ui->SaisieNom->setText(nom);
     ui->SaisiePtsMax->setValue(nbPtsMax);
     ui->SaisieTmpMax->setValue(tpsMax);
     estEnregistrer = false;
 
+    // Connexion des slots
     connect(ui->Cancel,SIGNAL(clicked()),this,SLOT(close()));
     connect(ui->Enregistrer,SIGNAL(clicked()),this,SLOT(enregistrer()));
 }

@@ -545,6 +545,7 @@
     <addaction name="actionQuitter"/>
     <addaction name="separator"/>
     <addaction name="actionParametre"/>
+    <addaction name="actionResultat"/>
    </widget>
    <widget class="QMenu" name="menuAide">
     <property name="title">
@@ -558,7 +559,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionQuitter">
    <property name="text">
-    <string>Quitter</string>
+    <string>&amp;Quitter</string>
    </property>
    <property name="shortcut">
     <string>Alt+F3</string>
@@ -574,10 +575,18 @@
   </action>
   <action name="actionParametre">
    <property name="text">
-    <string>Parametre</string>
+    <string>&amp;Parametre</string>
    </property>
    <property name="shortcut">
     <string>Alt+P</string>
+   </property>
+  </action>
+  <action name="actionResultat">
+   <property name="text">
+    <string>&amp;Resultat...</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+R</string>
    </property>
   </action>
  </widget>

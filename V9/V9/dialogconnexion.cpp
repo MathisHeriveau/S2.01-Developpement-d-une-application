@@ -8,12 +8,18 @@ DialogConnexion::DialogConnexion(QWidget *parent) :
     ui(new Ui::DialogConnexion)
 {
     ui->setupUi(this);
+
+    // Configuration des premiers elements de la fenetre
     ui->Erreur->setHidden(true);
+
+    // Connexion à la base de données
     db = new DataBase();
     db->openDataBase();
     db->restorDataBase();
 
     estConnecter = false;
+
+    // Connexion aux slots
     connect(ui->Connexion, SIGNAL(clicked()),this,SLOT(demandeConnexion()));
 }
 
@@ -23,7 +29,10 @@ DialogConnexion::~DialogConnexion()
 }
 
 void DialogConnexion::demandeConnexion(){
+
     ui->Erreur->setHidden(true);
+
+    // Récupération des données saisies
     if(ui->LineLogin->text() == "" ||ui->LineMDP->text() == "" ) ui->Erreur->setHidden(false);
     else {
         //Vérification du mdp et login
@@ -43,6 +52,8 @@ void DialogConnexion::demandeConnexion(){
         query.next();
         id_joueur = query.value(0).toInt();
         log = query.value(1).toString();
+
+        // Si le login et le mdp sont corrects
         if (query.value(1).toString()==ui->LineLogin->text() && query.value(2).toString() == ui->LineMDP->text()) {
             estConnecter = true;
             qDebug() << "Login";
@@ -57,6 +68,8 @@ void DialogConnexion::demandeConnexion(){
 }
 
 void DialogConnexion::demandeQuitter(){
+    // On ferme la connexion à la base de données
+    db->clseDataBase();
     quitter=true;
     this->close();
 }

@@ -11,7 +11,8 @@ CONFIG += c++11
 SOURCES += chifoumi.cpp \
     database.cpp \
     dialogconnexion.cpp \
-    dialogparametre.cpp
+    dialogparametre.cpp \
+    dialogresultat.cpp
 SOURCES += main.cpp
 SOURCES += modele.cpp
 SOURCES += presentation.cpp
@@ -20,13 +21,15 @@ HEADERS += chifoumi.h \
     database.h \
     dialogconnexion.h \
     dialogparametre.h \
+    dialogresultat.h \
     modele.h \
     presentation.h
 
 FORMS += \
     chifoumi.ui \
     dialogconnexion.ui \
-    dialogparametre.ui
+    dialogparametre.ui \
+    dialogresultat.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

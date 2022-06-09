@@ -2,24 +2,29 @@
 #include "chifoumi.h"
 #include "dialogparametre.h"
 #include "dialogconnexion.h"
+#include "dialogresultat.h"
 #include <QMessageBox>
 
 presentation::presentation(modele* m,QObject *parent) : QObject{parent}, _leModele(m)
 {
-
-
     //ctor
     // partie mod�le
     tmps = 30;
+    // Initialiser les paramétres
     _leModele->setTpsMax(30);
     _leModele->setNbPtsMax(5);
     _leModele->initScores();
     _leModele->initCoups();
     _time = new QTimer(this);
+
+    // Connecter les signaux et les slots
     QObject::connect(_time, SIGNAL(timeout()), this, SLOT(updateTimer()));
 
+    // Lancement de la fenetre de connexion
     DialogConnexion* maDLG = new DialogConnexion;
     maDLG->exec();
+
+    // Si le joueur est connecté
     _leModele->setId(maDLG->getId());
     _leModele->setNom(maDLG->getLog());
     _leModele->setEtat(modele::Etat::initialiser);
@@ -62,21 +67,27 @@ void presentation::boutonPierre(){
 
 }
 void presentation::nvllePartieDemandee(){
+    // reinitialiser les paramétres
     _time->start(1000);
     _leModele->initCoups();
     _leModele->initScores();
     _leModele->setEtat(modele::Etat::enCours);
+
+    // Actualiser la vue
     demandeActualisation();
+
     tmps = _leModele->getTpsMax();
     _laVue->majTimer(tmps);
 }
 
 void presentation::demandePause(){
+    // relancer le timer
     if(_leModele->getEtat()==modele::Etat::enPause){
         _time->start();
         _leModele->setEtat(modele::Etat::enCours);
         demandeActualisation();
     }
+    // mettre le jeu en pause si il est en pause
     else{
         _time->stop();
         _leModele->setEtat(modele::Etat::enPause);
@@ -88,8 +99,12 @@ void presentation::demandePause(){
 #include <QDebug>
 
 void presentation::coupJoueurJoue(){
+    // Générer le coup de l'ordinateur
     _leModele->setCoupMachine(_leModele->genererUnCoup());
     _leModele->majScores(_leModele->determinerGagnant());
+
+    // Actualiser la vue
+    // Si le joueur a gagné ou perdu
     if(_leModele->getNbPtsMax()<= _leModele->getScoreJoueur() || _leModele->getNbPtsMax() <= _leModele->getScoreMachine()){
         _time->stop();
 
@@ -97,6 +112,7 @@ void presentation::coupJoueurJoue(){
         _leModele->setEtat(modele::Etat::fin);
         demandeActualisation();
     }
+    // Si le joueur a encore des points
     else{
        demandeActualisation();
     }
@@ -107,19 +123,24 @@ void presentation::coupJoueurJoue(){
 
 void presentation::aProposDe()
 {
+    // Afficher la boite de dialogue de l'a propos de
     QMessageBox *msgbox = new QMessageBox;
     msgbox->setWindowTitle("A propos de cette application.");
-    msgbox->setText(" - La version de l’application : V6\n- la date de création 24/05/2022\n - Les auteursProgramme développé par :\nArthur Le Menn\nColas Naudi\nMathis Heriveau");
+    msgbox->setText(" - La version de l’application : V9\n- la date de création 09/06/2022\n - Les auteursProgramme développé par :\nArthur Le Menn\nColas Naudi\nMathis Heriveau");
     msgbox->setStandardButtons(QMessageBox::Ok);
     msgbox->exec();
 }
+
 void presentation::updateTimer(){
+    // Mettre à jour le timer
+    // Si le temps n'est pas écoulé
     if(tmps > 0){
         tmps--;
         _time->start(1000);
         _laVue->majTimer(tmps);
         //Afficher le timer
     }
+    // Si le temps est écoulé
     else{
         _time->stop();
         //Le score requis est atteint
@@ -130,7 +151,9 @@ void presentation::updateTimer(){
 }
 
 void presentation::parametre(){
+    // Si le jeu est en cours
     if(_leModele->getEtat()!=modele::Etat::initialiser && _leModele->getEtat()!=modele::Etat::fin){
+        // Afficher un message d'erreur
         QMessageBox msgBox;
         msgBox.setText("L’utilisateur peut modifier différents paramètres que avant de commencer une partie.");
         msgBox.setInformativeText("Veillez attendre la fin de la partie avant d'accéder aux parametres");
@@ -139,8 +162,10 @@ void presentation::parametre(){
         msgBox.exec();
     }
     else{
+        // Lancer la fenetre de parametres
         DialogParametre* madlg = new DialogParametre(_laVue,_leModele->getNom(),_leModele->getNbPtsMax(),_leModele->getTpsMax());
         madlg->exec();
+        // Enregistrer les parametres
         if(madlg->getEnregistrer()){
             _leModele->setNom(madlg->getNom());
             _leModele->setNbPtsMax(madlg->getNbPtsMax());
@@ -153,9 +178,21 @@ void presentation::parametre(){
 
 
 void presentation::demandeActualisation(){
+    // Actualiser la vue
      _laVue->actualisation(_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine(), _leModele->getEtat(), tmps,  _leModele->getTpsMax(), _leModele->getNom());
      if(_leModele->getEtat() == modele::Etat::fin) {
+         // Si la partie est fini, on insert le score dans la base de données
          _leModele->db->insertScore(_leModele->getId(),_leModele->getNom(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
      }
 
+}
+
+
+void presentation::resultat(){
+    // Si le jeu est arrté
+    if(!(_leModele->getEtat()!=modele::Etat::initialiser && _leModele->getEtat()!=modele::Etat::fin)){
+        // Afficher la boite de dialogue de resultat
+        DialogResultat* madlg = new DialogResultat();
+        madlg->exec();
+    }
 }

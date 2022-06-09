@@ -33,11 +33,9 @@ public:
     int getNbPtsMax();
         /* retourne le nombre de points requis pour gagner la partie */
     int getTpsMax();
-
+        /* retourne le temps maximum pour gagner la partie */
     int getId();
-    void setId(int);
-
-
+        /* retourne l'id du joueur */
 
     char determinerGagnant();
         /* détermine le gagnant 'J' pour joueur, 'M' pour machine, 'N' pour match nul
@@ -63,10 +61,14 @@ public:
             du paramétre e */
     void setNbPointsRequis(unsigned int nbPoints);
         /* initialise le nombre de points requis avec le paramètre nbPoints*/
-
+     void setId(int);
+        /* change l'id du joueur */
     void setNom(QString);
+        /* change le nom du joueur */
     void setNbPtsMax(int);
+        /* change le nombre de points requis pour gagner la partie */
     void setTpsMax(int);
+        /* change le temps maximum pour gagner la partie */
 
     // Autres modificateurs
     void majScores(char p_gagnant);
