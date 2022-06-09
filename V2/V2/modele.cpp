@@ -1,55 +1,33 @@
-/**
- * @file chifoumi.cpp
- * @author Mathis HERIVEAU, Arthur LE MENN, Colas NAUDI
- * @brief 
- * @version 0.1
- * @date 30-03-2022
- * 
- * @copyright Copyright (c) 2022
- * 
-**/
+#include "modele.h"
 
-#include "chifoumi.h"
-
-#include <cstdlib>
-#include <ctime>
-
-
-    ///* ---- PARTIE MOD�LE ---------------------------
-
-Chifoumi::Chifoumi()
+modele::modele(QObject *parent) : QObject(parent)
 {
-    //ctor
-    // partie mod�le
-    initScores();
-    initCoups();
-    srand(time(NULL));
+
 }
 
-Chifoumi::~Chifoumi()
-{
-    //dtor
+/// Getters
+
+modele::UnCoup modele::getCoupJoueur() {
+    return coupJoueur;
 }
 
-    /// Getters
-
-Chifoumi::UnCoup Chifoumi::getCoupJoueur() {
-	return coupJoueur;
-}
-
-Chifoumi::UnCoup Chifoumi::getCoupMachine() {
+modele::UnCoup modele::getCoupMachine() {
     return coupMachine;
 }
 
-unsigned int Chifoumi::getScoreJoueur() {
+unsigned int modele::getScoreJoueur() {
     return scoreJoueur;
 }
 
-unsigned int Chifoumi::getScoreMachine() {
+unsigned int modele::getScoreMachine() {
     return scoreMachine;
 }
 
-char Chifoumi::determinerGagnant(){
+modele::Etat modele::getEtat(){
+    return etatJeu;
+}
+
+char modele::determinerGagnant(){
     char gagnantARetourner;
     // avant de commencer : match nul
     gagnantARetourner = 'N';
@@ -114,7 +92,7 @@ char Chifoumi::determinerGagnant(){
     return gagnantARetourner;
 }
 
-    ///* M�thodes utilitaires du Mod�le
+///* M�thodes utilitaires du Mod�le
 
 int randMinMax(int min, int max){
     /* pr�-condition : min<max ;
@@ -122,39 +100,42 @@ int randMinMax(int min, int max){
     return rand()%(max-min) + min;
 }
 
-Chifoumi::UnCoup Chifoumi::genererUnCoup()
+modele::UnCoup modele::genererUnCoup()
 {
     UnCoup valeurGeneree;   // valeur à retourner
     unsigned int nbAleatoire;
     nbAleatoire = randMinMax(1, 4);
     switch (nbAleatoire) {
-        case 1 : valeurGeneree = Chifoumi::pierre;break;
-        case 2 : valeurGeneree = Chifoumi::papier;break;
-        case 3 : valeurGeneree = Chifoumi::ciseau;break;
-        default: break;
+        case 1 : valeurGeneree = modele::pierre;break;
+        case 2 : valeurGeneree = modele::papier;break;
+        case 3 : valeurGeneree = modele::ciseau;break;
     }
     return valeurGeneree;
 }
 
-    /// Setters
+/// Setters
 
-void Chifoumi::setCoupJoueur(UnCoup p_coup){
+void modele::setCoupJoueur(UnCoup p_coup){
     coupJoueur = p_coup;
 }
 
-void Chifoumi::setCoupMachine(UnCoup p_coup) {
+void modele::setCoupMachine(UnCoup p_coup) {
     coupMachine = p_coup;
 }
 
-void Chifoumi::setScoreJoueur(unsigned int p_score) {
+void modele::setScoreJoueur(unsigned int p_score) {
     scoreJoueur = p_score;
 }
 
-void Chifoumi::setScoreMachine(unsigned int p_score) {
+void modele::setScoreMachine(unsigned int p_score) {
     scoreMachine = p_score;
 }
 
-void Chifoumi::majScores(char p_gagnant) {
+void modele::setEtat(Etat e){
+    etatJeu = e;
+}
+
+void modele::majScores(char p_gagnant) {
     switch(p_gagnant)
     {
         case 'M' : scoreMachine++; break;
@@ -164,13 +145,16 @@ void Chifoumi::majScores(char p_gagnant) {
     }
 }
 
-void Chifoumi::initScores() {
+void modele::initScores() {
     setScoreMachine(0);
     setScoreJoueur(0);
-    qDebug << "test";
 }
 
-void Chifoumi::initCoups() {
+void modele::initCoups() {
     setCoupJoueur(rien);
     setCoupMachine(rien);
 }
+
+
+
+
