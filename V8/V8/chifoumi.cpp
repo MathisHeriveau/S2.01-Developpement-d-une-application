@@ -8,17 +8,13 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-
-    srand(time(NULL));
-    ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/rien.gif"));
-    ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/rien.gif"));
     ui->iconFeuille->setEnabled(false);
     ui->iconCiseau->setEnabled(false);
     ui->iconPierre->setEnabled(false);
-    ui->NvllPartie->setFocus();
-    ui->NvllPartie->setDefault(true);
     ui->Pause->setEnabled(false);
+    ui->NvllPartie->setEnabled(true);
+
+    srand(time(NULL));
 
 }
 
@@ -53,20 +49,16 @@ void MainWindow::supprConnexion(QObject *c)
     disconnect(ui->actionParametre,SIGNAL(triggered()),c,SLOT(parametre()));
 }
 
-void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int scoreJ,int scoreM, modele::Etat e, int tps, int tpsMax){
+void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int scoreJ,int scoreM, modele::Etat e, int tps, int tpsMax, QString nomj){
     QString txt;
+    ui->labelVous->setText(nomj);
     switch (e) {
         case modele::initialiser:
-            ui->iconFeuille->setEnabled(true);
-            ui->iconCiseau->setEnabled(true);
-            ui->iconPierre->setEnabled(true);
-            ui->Pause->setEnabled(true);
-            ui->Pause->setText("Pause");
+            ui->iconFeuille->setEnabled(false);
+            ui->iconCiseau->setEnabled(false);
+            ui->iconPierre->setEnabled(false);
+            ui->Pause->setEnabled(false);
             ui->NvllPartie->setEnabled(true);
-
-            ui->labelVous->setStyleSheet("color: blue;");
-            ui->labelScoreVous->setStyleSheet("color: blue;");
-
             break;
         case modele::fin:
 
@@ -74,18 +66,18 @@ void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int s
             if(tps!=0){
                 tps = tpsMax - tps;
                 if(scoreJ > scoreM){
-                    QMessageBox::information(this, "Fin de la partie gagnant", "Bravo vous gagné la partie avec " + txt.QString::setNum(scoreJ) + " points en " + QString::number(tps)+ " secondes. ");
+                    QMessageBox::information(this, "Fin de la partie gagnant", "Bravo "+ nomj+ ". Vous gagnez la partie avec " + txt.QString::setNum(scoreJ) + " points en " + QString::number(tps)+ " secondes. ");
                 }
                 else{
-                    QMessageBox::information(this, "Fin de la partie perdant", "Dommage vous avez perdu la partie avec " + txt.QString::setNum(scoreJ) + " points en " + QString::number(tps)+ " secondes. ");
+                    QMessageBox::information(this, "Fin de la partie perdant", "Dommage "+nomj+". Vous avez perdu la partie avec " + txt.QString::setNum(scoreJ) + " points en " + QString::number(tps)+ " secondes. ");
                 }
             }else{
                 tps = tpsMax - tps;
                 if(scoreJ > scoreM){
-                    QMessageBox::information(this, "Helas chers joueurs, temps de jeu fini !", "Bravo vous gagné la partie avec " + txt.QString::setNum(scoreJ) + " points.");
+                    QMessageBox::information(this, "Helas chers joueurs, temps de jeu fini !", "Bravo "+ nomj+ ". Vous gagnez la partie avec " + txt.QString::setNum(scoreJ) + " points.");
                 }
                 else if(scoreJ == scoreM){
-                    QMessageBox::information(this, "Helas chers joueurs, temps de jeu fini !", "Dommage, égalité...");
+                    QMessageBox::information(this, "Helas chers joueurs, temps de jeu fini !", "Egalité...");
                 }
                 else{
                     QMessageBox::information(this,  "Helas chers joueurs, temps de jeu fini !", "La machine termine toutefois mieux, avec " + txt.QString::setNum(scoreM) + " points.");
@@ -144,6 +136,7 @@ void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int s
 
     }
 
+
 }
 
 void MainWindow::majTimer(int temps){
@@ -156,3 +149,5 @@ void MainWindow::majParametre( QString nom, int nbMaxPts, int tmpsMax){
     ui->labelNbPointRequis->setText(QString::number(nbMaxPts));
 
 }
+
+

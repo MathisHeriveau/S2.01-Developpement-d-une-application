@@ -16,6 +16,7 @@ public:
     void clseDataBase();
     bool restorDataBase();
     bool insertJoueur();
+    bool insertScore(int idJ,QString nomJ,int scoreJ, int scoreM);
 private:
     QSqlDatabase mydb;
 };

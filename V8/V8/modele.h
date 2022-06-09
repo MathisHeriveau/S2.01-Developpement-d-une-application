@@ -2,6 +2,7 @@
 #define MODELE_H
 
 #include <QObject>
+#include "database.h"
 
 class modele : public QObject
 {
@@ -32,6 +33,10 @@ public:
     int getNbPtsMax();
         /* retourne le nombre de points requis pour gagner la partie */
     int getTpsMax();
+
+    int getId();
+    void setId(int);
+
 
 
     char determinerGagnant();
@@ -92,7 +97,9 @@ private:
     QString nom;
     int nbMaxPts;
     int tmpsMax;
-
+    int id_joueur;
+public:
+    DataBase *db;
 };
 
 #endif // MODELE_H

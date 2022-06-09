@@ -2,7 +2,8 @@
 
 modele::modele(QObject *parent) : QObject(parent)
 {
-
+    db = new DataBase();
+    db->openDataBase();
 }
 
 /// Getters
@@ -37,6 +38,11 @@ int modele::getNbPtsMax(){
 int modele::getTpsMax(){
     return this->tmpsMax;
 }
+
+int modele::getId(){
+    return id_joueur;
+}
+
 
 char modele::determinerGagnant(){
     char gagnantARetourner;
@@ -176,6 +182,12 @@ void modele::initCoups() {
     setCoupJoueur(rien);
     setCoupMachine(rien);
 }
+
+void modele::setId(int e)
+{
+    id_joueur = e;
+}
+
 
 
 

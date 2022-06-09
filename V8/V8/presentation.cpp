@@ -11,17 +11,19 @@ presentation::presentation(modele* m,QObject *parent) : QObject{parent}, _leMode
     //ctor
     // partie mod�le
     tmps = 30;
-    _leModele->setNom("Vous");
     _leModele->setTpsMax(30);
     _leModele->setNbPtsMax(5);
     _leModele->initScores();
     _leModele->initCoups();
-    _leModele->setEtat(modele::Etat::initialiser);
     _time = new QTimer(this);
     QObject::connect(_time, SIGNAL(timeout()), this, SLOT(updateTimer()));
 
     DialogConnexion* maDLG = new DialogConnexion;
     maDLG->exec();
+    _leModele->setId(maDLG->getId());
+    _leModele->setNom(maDLG->getLog());
+    _leModele->setEtat(modele::Etat::initialiser);
+
 }
 
 
@@ -127,11 +129,6 @@ void presentation::updateTimer(){
     }
 }
 
-
-void presentation::demandeActualisation(){
-     _laVue->actualisation(_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine(), _leModele->getEtat(), tmps,  _leModele->getTpsMax());
-}
-
 void presentation::parametre(){
     if(_leModele->getEtat()!=modele::Etat::initialiser && _leModele->getEtat()!=modele::Etat::fin){
         QMessageBox msgBox;
@@ -152,4 +149,13 @@ void presentation::parametre(){
             _laVue->majParametre(_leModele->getNom(),_leModele->getNbPtsMax(),_leModele->getTpsMax());
         }
     }
+}
+
+
+void presentation::demandeActualisation(){
+     _laVue->actualisation(_leModele->getCoupJoueur(),_leModele->getCoupMachine(),_leModele->getScoreJoueur(),_leModele->getScoreMachine(), _leModele->getEtat(), tmps,  _leModele->getTpsMax(), _leModele->getNom());
+     if(_leModele->getEtat() == modele::Etat::fin) {
+         _leModele->db->insertScore(_leModele->getId(),_leModele->getNom(),_leModele->getScoreJoueur(),_leModele->getScoreMachine());
+     }
+
 }

@@ -18,6 +18,8 @@ public:
 
     bool getEstConnecter();
     bool getQuitter();
+    int getId();
+    QString getLog();
 
 private slots:
     void demandeConnexion();
@@ -28,6 +30,8 @@ private:
     DataBase *db;
     bool estConnecter;
     bool quitter;
+    int id_joueur;
+    QString log;
 };
 
 #endif // DIALOGCONNEXION_H
