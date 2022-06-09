@@ -19,8 +19,10 @@ public:
     void nvlleConnexion(QObject *c);
     void supprConnexion(QObject *c);
 
-    void actualisation(modele::UnCoup, modele::UnCoup, int scoreJ,int scoreM, modele::Etat);
+    void actualisation(modele::UnCoup, modele::UnCoup, int scoreJ,int scoreM, modele::Etat, int, int);
     void majTimer(int);
+    void majParametre( QString nom, int nbMaxPts, int tmpsMax);
+
 
 private:
     Ui::MainWindow *ui;

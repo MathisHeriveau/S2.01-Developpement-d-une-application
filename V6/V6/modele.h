@@ -12,7 +12,7 @@ public:
 
 public:
     enum UnCoup {pierre, papier, ciseau, rien};
-    enum Etat {initialiser, enCours, enPause};
+    enum Etat {initialiser, enCours, enPause, fin};
 
     ///* Méthodes du Modéle
 public:
@@ -27,6 +27,11 @@ public:
         /* retourne le score de la machine */
     Etat getEtat();
         /* retourne l'état du jeu */
+    QString getNom();
+        /* retourne le nombre de points requis pour gagner la partie */
+    int getNbPtsMax();
+        /* retourne le nombre de points requis pour gagner la partie */
+    int getTpsMax();
 
 
     char determinerGagnant();
@@ -51,6 +56,12 @@ public:
     void setEtat(Etat e);
         /* initialise l'attribut etatJeu avec la valeur
             du paramétre e */
+    void setNbPointsRequis(unsigned int nbPoints);
+        /* initialise le nombre de points requis avec le paramètre nbPoints*/
+
+    void setNom(QString);
+    void setNbPtsMax(int);
+    void setTpsMax(int);
 
     // Autres modificateurs
     void majScores(char p_gagnant);
@@ -77,7 +88,10 @@ private:
     unsigned int scoreMachine;  // score actuel de la Machine
     UnCoup coupJoueur;          // dernier coup joué par le joueur
     UnCoup coupMachine;         // dernier coup joué par la machine
-    Etat etatJeu;                  // état de la partie
+    Etat etatJeu;               // état de la partie
+    QString nom;
+    int nbMaxPts;
+    int tmpsMax;
 
 };
 

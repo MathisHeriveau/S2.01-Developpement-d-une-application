@@ -27,6 +27,17 @@ modele::Etat modele::getEtat(){
     return etatJeu;
 }
 
+
+QString modele::getNom(){
+    return this->nom;
+}
+int modele::getNbPtsMax(){
+    return this->nbMaxPts;
+}
+int modele::getTpsMax(){
+    return this->tmpsMax;
+}
+
 char modele::determinerGagnant(){
     char gagnantARetourner;
     // avant de commencer : match nul
@@ -134,6 +145,17 @@ void modele::setScoreMachine(unsigned int p_score) {
 void modele::setEtat(Etat e){
     etatJeu = e;
 }
+
+void modele::setNom(QString e){
+    this->nom = e;
+}
+void modele::setNbPtsMax(int nb){
+    this->nbMaxPts = nb;
+}
+void modele::setTpsMax(int nb){
+    this->tmpsMax = nb;
+}
+
 
 void modele::majScores(char p_gagnant) {
     switch(p_gagnant)

@@ -23,7 +23,7 @@ public:
 
 private:
     void coupJoueurJoue();
-
+    void demandeActualisation();
 public slots:
     void boutonFeuille();
     void boutonCiseau();
@@ -31,6 +31,7 @@ public slots:
     void nvllePartieDemandee();
     void aProposDe();
     void demandePause();
+    void parametre();
 
 private slots:
     void updateTimer();
