@@ -27,6 +27,10 @@ modele::Etat modele::getEtat(){
     return etatJeu;
 }
 
+unsigned int modele::getNbPointsRequis(){
+    return nbPointsRequis;
+}
+
 char modele::determinerGagnant(){
     char gagnantARetourner;
     // avant de commencer : match nul
@@ -135,6 +139,10 @@ void modele::setEtat(Etat e){
     etatJeu = e;
 }
 
+void modele::setNbPointsRequis(unsigned int nbPoints){
+    nbPointsRequis = nbPoints;
+}
+
 void modele::majScores(char p_gagnant) {
     switch(p_gagnant)
     {
@@ -146,6 +154,7 @@ void modele::majScores(char p_gagnant) {
 }
 
 void modele::initScores() {
+    setNbPointsRequis(5);
     setScoreMachine(0);
     setScoreJoueur(0);
 }

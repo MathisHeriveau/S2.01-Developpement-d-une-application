@@ -1,5 +1,6 @@
 #include "chifoumi.h"
 #include "ui_chifoumi.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -48,8 +49,8 @@ void MainWindow::supprConnexion(QObject *c)
 }
 
 
-void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int scoreJ,int scoreM, modele::Etat e){
-
+void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int scoreJ,int scoreM, modele::Etat e, unsigned int nbPointsRequis){
+    QString txt;
     switch (e) {
         case modele::initialiser:
             // Parametres par defaut
@@ -57,19 +58,34 @@ void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int s
             ui->iconCiseau->setEnabled(true);
             ui->iconPierre->setEnabled(true);
 
-            // Mettre la couleur du label et score en bleu
+            // Mettre en bleu le coup joueur et le label
             ui->labelVous->setStyleSheet("color: blue;");
             ui->labelScoreVous->setStyleSheet("color: blue;");
-            break;
-        case modele::enCours:
-            QString txt;
 
-            // Mise a jour des scores sur la vue
+            break;
+        case modele::fin:
+            // Si le joueur gagne
+            if(scoreJ > scoreM){
+                QMessageBox::information(this, "Fin de la partie gagnant", "Bravo vous gagné la partie avec " + txt.QString::setNum(scoreJ) + " points");
+            }
+            else
+            //Si la machine gagne
+            {
+
+                QMessageBox::information(this, "Fin de la partie perdant", "Dommage vous avez perdu la partie avec " + txt.QString::setNum(scoreJ) + " points");
+            }
+
+
+
+        case modele::enCours:
+
+            // Mise a jour des scores
             ui->labelScoreMachine->setText(txt.QString::setNum(scoreM));
             ui->labelScoreVous->setText(txt.QString::setNum(scoreJ));
+            ui->labelNbPointRequis->setText(txt.QString::setNum(nbPointsRequis));
 
             switch (coupJ) {
-                // Mise a jour de l'image du joueur
+                // Affichage de l'image du coup joueur
                 case modele::UnCoup::pierre: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/pierre.gif"));  break;
                 case modele::UnCoup::ciseau: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/ciseau.gif")); break;
                 case modele::UnCoup:: papier: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/papier.gif"));break;
@@ -77,13 +93,15 @@ void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int s
             }
 
             switch (coupM) {
-                // Mise a jour de l'image de la machine
+                // Affichage de l'image du coup machine
                 case modele::UnCoup::pierre: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/pierre.gif")); break;
                 case modele::UnCoup::ciseau: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/ciseau.gif")); break;
                 case modele::UnCoup::papier: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/papier.gif")); break;
                 case modele::UnCoup::rien: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/rien.gif")); break;
             }
             break;
+
+
 
     }
 
