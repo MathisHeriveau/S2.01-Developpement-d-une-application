@@ -167,6 +167,7 @@ void Chifoumi::majScores(char p_gagnant) {
 void Chifoumi::initScores() {
     setScoreMachine(0);
     setScoreJoueur(0);
+    qDebug << "test";
 }
 
 void Chifoumi::initCoups() {
