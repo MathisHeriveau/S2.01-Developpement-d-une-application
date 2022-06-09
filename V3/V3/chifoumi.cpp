@@ -32,7 +32,8 @@ void MainWindow::nvlleConnexion(QObject *c)
     connect(ui->iconCiseau, SIGNAL(clicked()), c, SLOT(boutonCiseau()));
     connect(ui->iconPierre, SIGNAL(clicked()), c, SLOT(boutonPierre()));
     connect(ui->NvllPartie, SIGNAL(clicked()), c, SLOT(nvllePartieDemandee()));
-
+    connect(ui->actionA_propos_de, SIGNAL(triggered()), c, SLOT(aProposDe()));
+    connect(ui->actionQuitter, SIGNAL(triggered()), this, SLOT(close()));
 }
 
 void MainWindow::supprConnexion(QObject *c)
@@ -42,7 +43,8 @@ void MainWindow::supprConnexion(QObject *c)
     disconnect(ui->iconCiseau, SIGNAL(clicked()), c, SLOT(boutonCiseau()));
     disconnect(ui->iconPierre, SIGNAL(clicked()), c, SLOT(boutonPierre()));
     disconnect(ui->NvllPartie, SIGNAL(clicked()), c, SLOT(nvllePartieDemandee()));
-
+    disconnect(ui->actionA_propos_de, SIGNAL(triggered()), c, SLOT(aProposDe()));
+    disconnect(ui->actionQuitter, SIGNAL(triggered()), c, SLOT(close()));
 }
 
 
@@ -55,27 +57,27 @@ void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int s
             ui->iconCiseau->setEnabled(true);
             ui->iconPierre->setEnabled(true);
 
-            // Mettre le score et label en bleu
+            // Mettre la couleur du label et score en bleu
             ui->labelVous->setStyleSheet("color: blue;");
             ui->labelScoreVous->setStyleSheet("color: blue;");
             break;
         case modele::enCours:
             QString txt;
 
-            // Actualiser le score
+            // Mise a jour des scores sur la vue
             ui->labelScoreMachine->setText(txt.QString::setNum(scoreM));
             ui->labelScoreVous->setText(txt.QString::setNum(scoreJ));
 
             switch (coupJ) {
-                // Actualiser l'image du joueur
+                // Mise a jour de l'image du joueur
                 case modele::UnCoup::pierre: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/pierre.gif"));  break;
                 case modele::UnCoup::ciseau: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/ciseau.gif")); break;
-                case modele::UnCoup::papier: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/papier.gif"));break;
+                case modele::UnCoup:: papier: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/papier.gif"));break;
                 case modele::UnCoup::rien: ui->iconVous->setPixmap(QPixmap(":/chifoumi/images/rien.gif")); break;
             }
 
             switch (coupM) {
-                // Actualiser l'image de la machine
+                // Mise a jour de l'image de la machine
                 case modele::UnCoup::pierre: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/pierre.gif")); break;
                 case modele::UnCoup::ciseau: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/ciseau.gif")); break;
                 case modele::UnCoup::papier: ui->iconMachine->setPixmap(QPixmap(":/chifoumi/images/papier.gif")); break;

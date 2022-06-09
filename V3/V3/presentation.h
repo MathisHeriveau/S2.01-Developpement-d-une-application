@@ -15,7 +15,7 @@ public:
     MainWindow* _laVue;
 
 public:
-    /**
+        /**
      * @brief Get the Modele object
      * 
      * @return modele* le modele de l'application
@@ -48,7 +48,7 @@ private:
     void coupJoueurJoue();
 
 public slots:
-     /**
+    /**
      * @brief Slot pour le bouton Feuille qui permet de jouer
      */
     void boutonFeuille();
@@ -64,6 +64,13 @@ public slots:
      * @brief Slot pour le bouton Nouvelle Partie qui permet de relancer une partie
      */
     void nvllePartieDemandee();
+    /**
+     * @brief Slot pour le bouton Pause qui permet de visualiser la version et nom des créateurs
+     */
+    void aProposDe();
+    /**
+     * @brief Slot pour le bouton Pause qui permet de mettre le jeu en pause
+     */
 };
 
 #endif // PRESENTATION_H

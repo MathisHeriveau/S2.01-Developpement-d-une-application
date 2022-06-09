@@ -499,16 +499,34 @@
     <property name="title">
      <string>&amp;Fichier</string>
     </property>
+    <addaction name="actionQuitter"/>
    </widget>
    <widget class="QMenu" name="menuAide">
     <property name="title">
      <string>&amp;Aide</string>
     </property>
+    <addaction name="actionA_propos_de"/>
    </widget>
    <addaction name="menuFichier"/>
    <addaction name="menuAide"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionQuitter">
+   <property name="text">
+    <string>Quitter</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+F3</string>
+   </property>
+  </action>
+  <action name="actionA_propos_de">
+   <property name="text">
+    <string>A propos de...</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="ressourcesChifoumi.qrc"/>
