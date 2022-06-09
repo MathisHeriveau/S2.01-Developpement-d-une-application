@@ -1,4 +1,4 @@
-# S2.01 - D'éveloppement d'une application
+# S2.01 - Développement d'une application
 
 ## Introduction 
 
