@@ -38,7 +38,7 @@ public:
      * 
      * @return int id du joueur
      */
-     */
+
     int getId();
 
     /**

@@ -85,7 +85,7 @@ public slots:
     /**
      * @brief Slot pour le bouton Nouvelle Partie qui permet de relancer une partie
      */
-    void nvllePartieDemandee();
+    void boutonNvllPartie();
 
      ///* Attributs du Mod�le
 private:

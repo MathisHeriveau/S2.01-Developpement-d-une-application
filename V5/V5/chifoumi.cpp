@@ -65,9 +65,9 @@ void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int s
             ui->labelScoreVous->setStyleSheet("color: blue;");
             break;
         case modele::enPause:
-            ui->iconFeuille->setEnabled(true);
-            ui->iconCiseau->setEnabled(true);
-            ui->iconPierre->setEnabled(true);
+            ui->iconFeuille->setEnabled(false);
+            ui->iconCiseau->setEnabled(false);
+            ui->iconPierre->setEnabled(false);
             ui->Pause->setText("Reprise jeu");
             ui->Pause->setDefault(true);
             ui->Pause->setEnabled(true);
@@ -80,6 +80,9 @@ void MainWindow::actualisation(modele::UnCoup coupJ, modele::UnCoup coupM, int s
             ui->Pause->setEnabled(true);
             ui->NvllPartie->setEnabled(true);
             ui->Pause->setDefault(false);
+            ui->iconFeuille->setEnabled(true);
+            ui->iconCiseau->setEnabled(true);
+            ui->iconPierre->setEnabled(true);
 
             ui->labelScoreMachine->setText(txt.QString::setNum(scoreM));
             ui->labelScoreVous->setText(txt.QString::setNum(scoreJ));
